@@ -1,3 +1,119 @@
+body {
+  /* temp background color */
+  background-color: gray;
+}
+
+/* temp screen styles */
+.screen {
+  max-width: 350px;
+  height: 80px;
+  background-color: lightgray; 
+  margin: 100px auto 0; 
+  text-align: end;
+  font-size: 2em;
+}
+
+/* temp screen text styles */
+.screen p {
+  padding-top: 20px;
+  padding-right: 20px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(1fr, 4);
+  grid-template-rows: repeat(1fr, 5);
+  grid-template-areas: 
+    "seven eight nine del"
+    "four five six plus"
+    "one two three minus"
+    "point zero div mult"
+    "reset reset equals equals";
+
+  /* temp width and margin */
+  max-width: 350px;
+  margin: 20px auto;
+}
+
+button {
+  /* temp height, font size, and background color */
+  height: 80px;
+  font-size: 1.5em;
+  background-color: lightslategray;
+}
+
+#digit-0 {
+  grid-area: zero;
+}
+
+#digit-1 {
+  grid-area: one;
+}
+
+#digit-2 {
+  grid-area: two;
+}
+
+#digit-3 {
+  grid-area: three;
+}
+
+#digit-4 {
+  grid-area: four;
+}
+
+#digit-5 {
+  grid-area: five;
+}
+
+#digit-6 {
+  grid-area: six;
+}
+
+#digit-7 {
+  grid-area: seven;
+}
+
+#digit-8 {
+  grid-area: eight;
+}
+
+#digit-9 {
+  grid-area: nine;
+}
+
+#decimal-point {
+  grid-area: point;
+}
+
+#delete {
+  grid-area: del;
+}
+
+#plus {
+  grid-area: plus;
+}
+
+#minus {
+  grid-area: minus;
+}
+
+#multiplication-sign {
+  grid-area: mult;
+}
+
+#division-sign {
+  grid-area: div;
+}
+
+#equals-sign {
+  grid-area: equals;
+}
+
+#reset {
+  grid-area: reset;
+}
+
 .attribution { 
   font-size: .7em; 
   text-align: center; 
