@@ -30,10 +30,12 @@ function handleDigits(e) {
     displayContent.innerText = '';
   }
 
-  displayIsToBeCleared = false;
-  operatorClicked = false;
-  newOperandOnDisplay = true;
-  displayContent.innerText += e.target.innerText;
+  if (displayContent.innerText.length < 9) {
+    displayContent.innerText += e.target.innerText;
+    displayIsToBeCleared = false;
+    operatorClicked = false;
+    newOperandOnDisplay = true;
+  }
 }
 
 function handleOperators(e) {
