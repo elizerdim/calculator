@@ -22,6 +22,12 @@ function handleClick(e) {
     handleOperators(e);
   } else if (e.target.id === 'delete') {
     displayContent.innerText = content.slice(0, content.length - 1);
+  } else if (e.target.id === 'toggle-negative') {
+    if (!content.startsWith('-') && content.length < 9) {
+      displayContent.innerText = '-' + content;
+    } else if (content.startsWith('-')) {
+      displayContent.innerText = content.slice(1);
+    }
   }
 }
 
