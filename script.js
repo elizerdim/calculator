@@ -28,6 +28,8 @@ function handleClick(e) {
     } else if (content.startsWith('-')) {
       displayContent.innerText = content.slice(1);
     }
+  } else if (e.target.id === 'equals-sign') {
+    showResult(e);
   }
 }
 
@@ -50,6 +52,10 @@ function handleOperators(e) {
     return;
   }
 
+  showResult(e);
+}
+
+function showResult(e) {
   if (!!firstOperand && !!operator) {
     secondOperand = displayContent.innerText;
     operate(firstOperand, secondOperand, operator);
