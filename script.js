@@ -14,11 +14,15 @@ buttonsDiv.addEventListener('click', handleClick);
 // window.addEventListener('keydown', handleKeydown);
 
 function handleClick(e) {
+  let content = displayContent.innerText;
+
   if (e.target.classList.value.includes('digit')) {
     handleDigits(e);
   } else if (e.target.classList.value.includes('operator')) {
     handleOperators(e);
-  } 
+  } else if (e.target.id === 'delete') {
+    displayContent.innerText = content.slice(0, content.length - 1);
+  }
 }
 
 function handleDigits(e) {
