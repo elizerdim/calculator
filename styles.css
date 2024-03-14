@@ -3,8 +3,8 @@ body {
   background-color: gray;
 }
 
-/* temp screen styles */
-.screen {
+/* temp display styles */
+.display {
   max-width: 350px;
   height: 80px;
   background-color: lightgray; 
@@ -13,8 +13,8 @@ body {
   font-size: 2em;
 }
 
-/* temp screen text styles */
-.screen p {
+/* temp display text styles */
+.display p {
   padding-top: 20px;
   padding-right: 20px;
 }
