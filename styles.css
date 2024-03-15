@@ -28,7 +28,7 @@ body {
     "four five six plus"
     "one two three minus"
     "point zero div mult"
-    "reset reset equals equals";
+    "reset reset neg equals";
 
   /* temp width and margin */
   max-width: 350px;
@@ -104,6 +104,10 @@ button {
 
 #division-sign {
   grid-area: div;
+}
+
+#toggle-negative {
+  grid-area: neg;
 }
 
 #equals-sign {
