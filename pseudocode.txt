@@ -2,7 +2,7 @@
 
 create an operations object - operations[operator](x, y)
 create a state object for firstOperand(num), secondOperand(num), operator(str), 
-currentDisplay(bool), operatorClicked(bool), displayIsResult(bool)
+currentDisplay(str), operatorClicked(bool), displayIsResult(bool)
 
 digits
   if the display has one 0

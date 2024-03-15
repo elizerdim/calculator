@@ -1,15 +1,6 @@
 const buttonsDiv = document.querySelector('.buttons');
 const displayContent = document.querySelector('.display-content');
 
-let firstOperand;
-let secondOperand;
-let operator;
-let result;
-
-let displayIsToBeCleared = false;
-let operatorClicked = false;
-let newOperandOnDisplay = false;
-
 buttonsDiv.addEventListener('click', handleClick);
 // window.addEventListener('keydown', handleKeydown);
 
@@ -18,6 +9,15 @@ const operations = {
   "-": (x, y) => x - y,
   "x": (x, y) => x * y,
   "/": (x, y) => x / y,
+}
+
+const state = {
+  firstOperand: null,
+  secondOperand: null,
+  operator: null,
+  currentDisplay: '0',
+  operatorClicked: false,
+  displayIsResult: false
 }
 
 function handleClick(e) {
