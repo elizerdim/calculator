@@ -13,6 +13,13 @@ let newOperandOnDisplay = false;
 buttonsDiv.addEventListener('click', handleClick);
 // window.addEventListener('keydown', handleKeydown);
 
+const operations = {
+  "+": (x, y) => x + y,
+  "-": (x, y) => x - y,
+  "x": (x, y) => x * y,
+  "/": (x, y) => x / y,
+}
+
 function handleClick(e) {
   let content = displayContent.innerText;
 
@@ -67,24 +74,6 @@ function handleOperators(e) {
 }
 
 function operate(operand1, operand2, operator) {
-  //carry out the operation
-  switch (operator) {
-    case '+':
-      result = +operand1 + +operand2;
-      break;
-    case '-':
-      result = +operand1 - +operand2;
-      break;
-    case 'x':
-      result = +operand1 * +operand2;
-      break;
-    case '/':
-      if (+operand2 === 0) {
-        result = 'Nice try!';
-      }
-      result = +operand1 / +operand2;
-      break;
-  }
 
   //format the result to have no more than 9 characters, including negative sign and decimal point
   let resultStr = result.toString();
