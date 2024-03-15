@@ -1,0 +1,76 @@
+- write pseudocode for all buttons -
+
+create an operations object - operations[operator](x, y)
+create a state object for firstOperand(num), secondOperand(num), operator(str), 
+currentDisplay(bool), operatorClicked(bool), displayIsResult(bool)
+
+digits
+  if the display has one 0
+    if 0 is clicked, return
+    else empty display
+	if the display has 9 characters, return
+	if operatorClicked is true, empty display
+  if displayIsResult is true and operatorClicked is false, reset state and result objects, empty display
+  
+  add digit to the end of display
+
+  update currentDisplay
+  change operatorClicked to false
+  change displayIsResult to false
+
++/-
+  if the display has 9 characters, return
+
+  if the display starts with '-', remove it
+    else add '-' to the start of the display
+
+  updateCurrentDisplay
+  change operatorClicked to false
+  change displayIsResult to false
+
+decimal point
+  if the display is empty, add zero to display
+  if the display has more than 7 characters, return
+
+  add decimal point to the end of display
+
+  update currentDisplay
+  change operatorClicked to false
+  change displayIsResult to false
+
+operators
+  store e.target.value in operator
+
+	if operatorClicked is true, return
+	if first operand is null, store parseFloat(currentDisplay) in firstOperand
+    else store parseFloat(currentDisplay) in secondOperand;
+
+  if secondOperand is not null, display result, change displayIsResult to true
+
+  update currentDisplay
+  change operatorClicked to true
+
+equals sign
+  if firstOperand or secondOperand or operator is null, return
+    else display result, change displayIsResult to true
+
+  update currentDisplay
+  change operatorClicked to false
+
+delete
+  delete the last character on display
+
+  update currentDisplay
+
+AC
+  reset state and result objects
+
+
+
+modular functions
+  reset state and result objects -  used in digits and AC
+
+  result function (result(x, y)) - calculate result with operations[operator](x, y) then round the result to have 9 characters including negative sign and decimal point, if any
+  use Number.isInteger(result) to check for decimal point
+  use Math.sign(result) to check for negative sign
+  return the result
