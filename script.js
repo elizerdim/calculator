@@ -1,24 +1,27 @@
-const buttonsDiv = document.querySelector('.buttons');
-const displayContent = document.querySelector('.display-content');
-
-buttonsDiv.addEventListener('click', handleClick);
-// window.addEventListener('keydown', handleKeydown);
-
-const operations = {
-  "+": (x, y) => x + y,
-  "-": (x, y) => x - y,
-  "x": (x, y) => x * y,
-  "/": (x, y) => x / y,
-}
-
-const state = {
+const calculator = {
   firstOperand: null,
   secondOperand: null,
   operator: null,
   currentDisplay: '0',
   operatorClicked: false,
-  displayIsResult: false
+  displayIsResult: false,
+  add: () => this.firstOperand + this.secondOperand,
+  substract: () => this.firstOperand - this.secondOperand,
+  divide: () => this.firstOperand / this.secondOperand,
+  multiply: () => this.firstOperand * this.secondOperand,
+  operate: () => {
+    if (this.operator === '+') this.add();
+    else if (this.operator === '−') this.substract();
+    else if (this.operator === '÷') this.divide();
+    else this.multiply();
+  }
 }
+
+const buttonsDiv = document.querySelector('.buttons');
+const displayContent = document.querySelector('.display-content');
+
+buttonsDiv.addEventListener('click', handleClick);
+// window.addEventListener('keydown', handleKeydown);
 
 function handleClick(e) {
   let content = displayContent.innerText;
