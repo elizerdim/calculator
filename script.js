@@ -25,6 +25,9 @@ const calculator = {
   }
 }
 
+const calculatorUI = document.querySelector('.calculator');
+const display = calculatorUI.querySelector('.display');
+
 const buttonsDiv = document.querySelector('.buttons');
 const displayContent = document.querySelector('.display-content');
 
