@@ -29,28 +29,25 @@ const calculatorUI = document.querySelector('.calculator');
 const display = calculatorUI.querySelector('.display');
 const buttons = calculatorUI.querySelector('.buttons');
 
-buttons.addEventListener('click', handleClick);
+buttons.addEventListener('click', (e) => {
+  if (!e.target.closest('button')) return;
+  
+  const button = e.target;
+  const buttonValue = button.innerText;
+  const displayValue = display.innerText;
+
+  console.log(button.classList.contains('digit'));
+
+  if (button.classList.contains('digit')) handleDigits(e);
+  else if (button.classList.contains('operator')) handleOperators(e);
+  else if (button.id === 'decimal-point') handleDecimalPoint(e);
+  else if (button.id === 'delete') handleDelete(e);
+  else if (button.id === 'toggle-negative') handleToggleNegative(e);
+  else if (button.id === 'equals-sign') handleEquals(e);
+  else handleReset(e);
+});
+
 // window.addEventListener('keydown', handleKeydown);
-
-function handleClick(e) {
-  let content = displayContent.innerText;
-
-  if (e.target.classList.value.includes('digit')) {
-    handleDigits(e);
-  } else if (e.target.classList.value.includes('operator')) {
-    handleOperators(e);
-  } else if (e.target.id === 'delete') {
-    displayContent.innerText = content.slice(0, content.length - 1);
-  } else if (e.target.id === 'toggle-negative') {
-    if (!content.startsWith('-') && content.length < 9) {
-      displayContent.innerText = '-' + content;
-    } else if (content.startsWith('-')) {
-      displayContent.innerText = content.slice(1);
-    }
-  } else if (e.target.id === 'equals-sign') {
-
-  }
-}
 
 function handleDigits(e) {
   if (displayIsToBeCleared && operatorClicked) {
