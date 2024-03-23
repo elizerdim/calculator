@@ -5,15 +5,23 @@ const calculator = {
   currentDisplay: '0',
   operatorClicked: false,
   displayIsResult: false,
-  add: () => this.firstOperand + this.secondOperand,
-  substract: () => this.firstOperand - this.secondOperand,
-  divide: () => this.firstOperand / this.secondOperand,
-  multiply: () => this.firstOperand * this.secondOperand,
-  operate: () => {
-    if (this.operator === '+') this.add();
-    else if (this.operator === '−') this.substract();
-    else if (this.operator === '÷') this.divide();
-    else this.multiply();
+  add() { 
+    return this.firstOperand + this.secondOperand 
+  },
+  substract() { 
+    return this.firstOperand - this.secondOperand 
+  },
+  divide() {
+    return this.firstOperand / this.secondOperand
+  },
+  multiply() { 
+    return this.firstOperand * this.secondOperand
+  },
+  operate() {
+    if (this.operator === '+') return this.add();
+    else if (this.operator === '−') return this.substract();
+    else if (this.operator === '÷') return this.divide();
+    else return this.multiply();
   }
 }
 
