@@ -27,11 +27,9 @@ const calculator = {
 
 const calculatorUI = document.querySelector('.calculator');
 const display = calculatorUI.querySelector('.display');
+const buttons = calculatorUI.querySelector('.buttons');
 
-const buttonsDiv = document.querySelector('.buttons');
-const displayContent = document.querySelector('.display-content');
-
-buttonsDiv.addEventListener('click', handleClick);
+buttons.addEventListener('click', handleClick);
 // window.addEventListener('keydown', handleKeydown);
 
 function handleClick(e) {
