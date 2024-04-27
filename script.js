@@ -2,98 +2,150 @@ const calculator = {
   firstOperand: null,
   secondOperand: null,
   operator: null,
-  currentDisplay: '0',
   operatorClicked: false,
   displayIsResult: false,
   add() { 
-    return this.firstOperand + this.secondOperand 
+    return parseFloat(this.firstOperand) + parseFloat(this.secondOperand) 
   },
   substract() { 
-    return this.firstOperand - this.secondOperand 
+    return parseFloat(this.firstOperand) - parseFloat(this.secondOperand) 
   },
   divide() {
-    return this.firstOperand / this.secondOperand
+    return parseFloat(this.firstOperand) / parseFloat(this.secondOperand)
   },
   multiply() { 
-    return this.firstOperand * this.secondOperand
+    return parseFloat(this.firstOperand) * parseFloat(this.secondOperand)
   },
   operate() {
     if (this.operator === '+') return this.add();
     else if (this.operator === '−') return this.substract();
     else if (this.operator === '÷') return this.divide();
-    else return this.multiply();
+    else if (this.operator === '×') return this.multiply();
   }
 }
 
 const calculatorUI = document.querySelector('.calculator');
-const display = calculatorUI.querySelector('.display');
 const buttons = calculatorUI.querySelector('.buttons');
+buttons.addEventListener('click', handleClick);
 
-buttons.addEventListener('click', (e) => {
-  if (!e.target.closest('button')) return;
-  
+function handleClick(e) {
+  const display = calculatorUI.querySelector('.display');
+  const displayValue = display.innerText;
   const button = e.target;
   const buttonValue = button.innerText;
-  const displayValue = display.innerText;
+  
+  if (!e.target.closest('button')) return;
+  
+  if (button.classList.contains('digit')) handleDigits();
+  else if (button.classList.contains('operator')) handleOperators();
+  else if (button.id === 'decimal-point') handleDecimalPoint();
+  else if (button.id === 'delete') handleDelete();
+  else if (button.id === 'toggle-negative') handleToggleNegative();
+  else if (button.id === 'equals-sign') handleEquals();
+  else if (button.id === 'reset') handleReset();
 
-  console.log(button.classList.contains('digit'));
-
-  if (button.classList.contains('digit')) handleDigits(e);
-  else if (button.classList.contains('operator')) handleOperators(e);
-  else if (button.id === 'decimal-point') handleDecimalPoint(e);
-  else if (button.id === 'delete') handleDelete(e);
-  else if (button.id === 'toggle-negative') handleToggleNegative(e);
-  else if (button.id === 'equals-sign') handleEquals(e);
-  else handleReset(e);
-});
-
-// window.addEventListener('keydown', handleKeydown);
-
-function handleDigits(e) {
-  if (displayIsToBeCleared && operatorClicked) {
-    displayContent.innerText = '';
+  function handleDigits() {
+    if (displayValue.length >= 9) {
+      return;
+    } else if (displayValue === '0' || calculator.operatorClicked) {
+      display.innerText = '' + buttonValue;
+    } else if (calculator.displayIsResult && !calculator.operatorClicked) {
+      handleReset();
+      display.innerText = buttonValue;
+    } else {
+      display.innerText += buttonValue;
+    } 
+  
+    calculator.operatorClicked = false;
+    calculator.displayIsResult = false;
   }
 
-  if (displayContent.innerText.length < 9) {
-    displayContent.innerText += e.target.innerText;
-    displayIsToBeCleared = false;
-    operatorClicked = false;
-    newOperandOnDisplay = true;
+  function handleOperators() {
+    if (calculator.operatorClicked) {
+      calculator.operator = buttonValue;
+      return;
+    } else if (!calculator.firstOperand) {
+      calculator.firstOperand = displayValue;
+      calculator.operator = buttonValue;
+    } else {
+      calculator.secondOperand = displayValue;
+      display.innerText = formatResult(calculator.operate());
+      calculator.firstOperand = formatResult(calculator.operate());
+      calculator.operator = buttonValue;
+      calculator.displayIsResult = true;
+    }
+    calculator.operatorClicked = true;
+  }
+  
+  function handleDecimalPoint() {
+    if (displayValue.length > 7) {
+      return;
+    } else if (display.innerText.endsWith('.')) {
+      display.innerText = displayValue.slice(0, -1);
+    } else {
+      display.innerText += '.';
+    }
+  
+    calculator.operatorClicked = false;
+    calculator.displayIsResult = false;
+  }
+  
+  function handleDelete() {
+    if (displayValue.length === 1) {
+      display.innerText = '0';
+    } else {
+      display.innerText = displayValue.slice(0, -1);
+    }
+
+    calculator.operatorClicked = false;
+    calculator.displayIsResult = false;
+  }
+  
+  function handleToggleNegative() {
+    if (displayValue.length >= 9 || displayValue === '0') {
+      return;
+    } else if (displayValue.startsWith('-')) {
+      display.innerText = displayValue.slice(1);
+    } else {
+      display.innerText = '-' + displayValue;
+    }
+
+    calculator.operatorClicked = false;
+    calculator.displayIsResult = false;
+  }
+  
+  function handleEquals() {
+    if (calculator.firstOperand && calculator.operator) {
+      calculator.secondOperand = displayValue;
+      display.innerText = formatResult(calculator.operate());
+      calculator.displayIsResult = true;
+    }
+    calculator.operatorClicked = false;
+  }
+  
+  function handleReset() {
+    calculator.firstOperand = null;
+    calculator.secondOperand = null;
+    calculator.operator = null;
+    calculator.operatorClicked = false;
+    calculator.displayIsResult = false;
+    display.innerText = '0';
   }
 }
 
-function handleOperators(e) {
-  if (operatorClicked) {
-    operator = e.target.innerText;
-    return;
-  }
-
-  if (!!firstOperand && !!operator) {
-    secondOperand = displayContent.innerText;
-    operate(firstOperand, secondOperand, operator);
-    displayContent.innerText = result;
-  } 
-
-  firstOperand = displayContent.innerText;
-  operator = e.target.innerText;
-
-  displayIsToBeCleared = true;
-  operatorClicked = true;
-  newOperandOnDisplay = false;
-}
-
-function operate(operand1, operand2, operator) {
-
-  //format the result to have no more than 9 characters, including negative sign and decimal point
+//format the result to have no more than 9 characters, including negative sign and decimal point
+function formatResult(result) {
   let resultStr = result.toString();
   
   if (resultStr.length > 9) {
     if (resultStr.includes('-') && result.Str.includes('.')) {
-      result = result.toPrecision(7).toString();
+      return result.toPrecision(7).toString();
     } else if (resultStr.includes('-') || resultStr.includes('.')) {
-      result = result.toPrecision(8).toString();
+      return result.toPrecision(8).toString();
     } else {
-      result = result.toPrecision(9).toString();
+      return result.toPrecision(9).toString();
     }
+  } else {
+    return resultStr;
   }
 }
