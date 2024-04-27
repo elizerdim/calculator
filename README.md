@@ -1,6 +1,6 @@
 # Calculator App
 
-This is a calculator app coded with vanilla JavaScript according to the design from [FrontendMentor](https://www.frontendmentor.io/challenges/calculator-app-9lteq5N29). 
+This is a calculator app coded with vanilla JavaScript.
 
 ## Table of contents
 
@@ -19,41 +19,42 @@ This is a calculator app coded with vanilla JavaScript according to the design f
 
 Users should be able to:
 
-- See the size of the elements adjust based on their device's screen size
 - Perform mathematical operations like addition, subtraction, multiplication, and division
-- Adjust the color theme based on their preference
-- Bonus: Have their initial theme preference checked using prefers-color-scheme and have any additional changes saved in the browser
 
 ### Screenshot
 
-![]()
+![](./screenshot.jpeg)
 
 ### Links
 
-- [View Code]()
-- [Live Preview]()
+- [View Code](https://github.com/elizerdim/calculator)
+- [Live Preview](https://elizerdim.github.io/calculator/)
 
 ## My process
 
 ### Built with
 
-- Semantic HTML5 markup
-- CSS custom properties
-- CSS Grid
+- HTML
+- CSS
+- JavaScript
 
 ### What I learned
 
+This was a real algorithm challenge! I know there are tons of JavaScript calculator tutorials out there that I could've just copied from, but I really wanted to do this by myself. I underestimated this project at first thinking that calculators are pretty straightforward, but it got out of hand at one point so I used pseudocode to gain back control. Here is what I learned working on this project:
+
 - Event propagation and event delegation - capturing and bubbling
-- closest() method is useful when event bubbling is used - it traverses the element and then its parents (heading toward the document root) until it finds a node that matches the specified CSS selector.
+- ```closest()``` method is useful when event bubbling is used - it traverses the element and then its parents (heading toward the document root) until it finds a node that matches the specified CSS selector.
 ```js
 e.target.closest('button')
+```
+- ```contains()``` method can be used on a DOMTokenList (which is what's returned from element.classList) similar to ```includes()``` method (which doesn't work on nodelists) on arrays and strings
+- Using a parent element for ```querySelector()``` instead of ```document``` improves performance.
+```
+const calculatorUI = document.querySelector('.calculator');
+const display = calculatorUI.querySelector('.display');
 ```
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-## Acknowledgments
-
-Thanks to Kevin Powell and Zell Liew for this [tutorial](https://www.youtube.com/watch?v=f0SG2j6d-Kg). I learned closest() method and ...
+- [innerHTML vs. innerText vs. textContent](https://www.freecodecamp.org/news/innerhtml-vs-innertext-vs-textcontent/#:~:text=Whiles%20innerText%20reads%20text%20as,doesn%27t%20account%20for%20styles.)
+- [HTML DOM Elements - Properties and Methods](https://www.w3schools.com/jsref/dom_obj_all.asp)
