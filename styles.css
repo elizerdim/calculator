@@ -1,22 +1,22 @@
 body {
-  /* temp background color */
-  background-color: gray;
+  background-color: #ADC4CE;
 }
 
-/* temp display styles */
 .display {
-  max-width: 350px;
+  max-width: 330px;
   height: 60px;
-  background-color: lightgray; 
+  background-color: #ebe8e8; 
   margin: 100px auto 0; 
   text-align: end;
   font-size: 2em;
   padding-top: 20px;
   padding-right: 20px;
+  box-shadow: 1px 1px 1px 1px gray;
 }
 
 .buttons {
   display: grid;
+  gap: 5px;
   grid-template-columns: repeat(1fr, 4);
   grid-template-rows: repeat(1fr, 5);
   grid-template-areas: 
@@ -25,17 +25,16 @@ body {
     "one two three minus"
     "point zero div mult"
     "reset reset neg equals";
-
-  /* temp width and margin */
   max-width: 350px;
   margin: 20px auto;
 }
 
 button {
-  /* temp height, font size, and background color */
   height: 80px;
   font-size: 1.5em;
-  background-color: lightslategray;
+  background-color: #e2e1db;
+  border: none;
+  box-shadow: 1px 1px 1px 1px gray;
 }
 
 #digit-0 {
@@ -116,9 +115,9 @@ button {
 
 .attribution { 
   font-size: .7em; 
-  text-align: center; 
+  text-align: center;
 }
 
 .attribution a { 
-  color: hsl(228, 45%, 44%); 
+  color: hsl(228, 79%, 40%); 
 }
